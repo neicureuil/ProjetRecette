@@ -8,14 +8,14 @@ RecipeLoader::~RecipeLoader() {
     delete recipe;
 }
 
-void RecipeLoader::LoadFromFile(QFile file){
+void RecipeLoader::LoadFromFile(QFile* file){
 
     QJsonParseError error;
 
     //Ouverture du fichier en lecture uniquement
-    if(file.open(QFile::ReadOnly)) {
+    if(file->open(QFile::ReadOnly)) {
         //Récupération du contenu du fichier
-        QByteArray donnees = file.readAll();
+        QByteArray donnees = file->readAll();
 
         //Interprétation du fichier JSON
         QJsonDocument doc = QJsonDocument::fromJson(donnees, &error);
@@ -24,6 +24,7 @@ void RecipeLoader::LoadFromFile(QFile file){
            throw std::runtime_error("Impossible d'interpreter le fichier, ce n'est peut être pas un fichier JSON.");
         }else{
             obj = doc.object();
+            LoadRecipe();
         }
 
     }else{

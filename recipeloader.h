@@ -33,9 +33,9 @@ class RecipeLoader
 
         /**
          * Fonction qui  lit le fichier de recette en JSON
-         * @param f un QFile qui est le fichier contenant la recette.
+         * @param f un QFile* qui est le fichier contenant la recette.
          */
-        void LoadFromFile(QFile f);
+        void LoadFromFile(QFile* f);
         /**
          * Fonction qui charge une recette depuis les données JSON du QJsonObject
          */

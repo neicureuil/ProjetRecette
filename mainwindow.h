@@ -7,6 +7,7 @@
 #include <QFileDialog>
 
 #include "recipeinfo.h"
+#include "recipeloader.h"
 
 /**
  *  La class MainWindow. Représente la fenetre principale de l'application.
@@ -16,6 +17,8 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
     private:
+        RecipeInfo *rInfo;
+        RecipeLoader *rloader; /**< RecipeLoader* variable. Chargeur de recette. */
         /**
          * Fonction qui initialise le menu "fichier" dans la barre de menus.
          */
@@ -47,5 +50,7 @@ class MainWindow : public QMainWindow
          * Signal emis lorsque l'utilisareur demande a fermer l'application.
          */
         void closeApp();
+        //TODO doc
+        void recipeLoaded(Recipe *);
 };
 #endif // MAINWINDOW_H

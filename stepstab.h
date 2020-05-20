@@ -11,7 +11,7 @@ class StepsTab : public QWidget
 {
     Q_OBJECT
 public:
-    explicit StepsTab(QWidget *parent = nullptr);
+    StepsTab(QWidget *parent = nullptr);
 
 private:
     QComboBox * choicebox;
