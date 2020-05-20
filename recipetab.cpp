@@ -24,8 +24,11 @@ RecipeTab::RecipeTab(QWidget *parent) : QWidget(parent)
     cooktimelabel= new QLabel("Temps de cuisson:");
     thirdLayout->addWidget(cooktimelabel);
 
-    totaltimelabel= new QLabel("Temps total");
+    totaltimelabel= new QLabel("Temps total:");
     thirdLayout->addWidget(totaltimelabel);
+
+    yieldlabel= new QLabel("Nombre de parts:");
+    thirdLayout->addWidget(yieldlabel);
 
     secondLayout->addLayout(thirdLayout);
    // rimage = new QImage();
@@ -38,6 +41,10 @@ RecipeTab::RecipeTab(QWidget *parent) : QWidget(parent)
     desctxtlabel= new QLabel("Lorem Ipsum Ta kompri avec du lait et des cookies pour mon plaisir personnel");
     secondLayout->addWidget(desctxtlabel);
     secondLayout->setAlignment(desctxtlabel, Qt::AlignAbsolute);
+
+    toolslabel= new QLabel("Outils nécéssaires:");
+    secondLayout->addWidget(toolslabel);
+    secondLayout->setAlignment(toolslabel, Qt::AlignLeft);
 
     kwordslabel= new QLabel("Mots clés:");
     secondLayout->addWidget(kwordslabel);

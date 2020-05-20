@@ -21,6 +21,8 @@ private:
     QLabel * preptimelabel;
     QLabel * cooktimelabel;
     QLabel * totaltimelabel;
+    QLabel * yieldlabel;
+    QLabel * toolslabel;
 signals:
 
 };
