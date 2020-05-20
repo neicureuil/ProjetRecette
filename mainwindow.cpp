@@ -2,11 +2,17 @@
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent) {
-   setupFileMenu();
 
 
-   //loadRecipe();
-   setCentralWidget(new RecipeInfo(this));
+    rloader = new RecipeLoader();
+    rInfo = new RecipeInfo(this);
+
+    setupFileMenu();
+
+    //loadRecipe();
+    setCentralWidget(rInfo);
+
+    connect(this, SIGNAL(recipeLoaded(Recipe*)), rInfo->GetRecipeTab(), SLOT(updateUI(Recipe*)));
 }
 
 MainWindow::~MainWindow() {
@@ -18,12 +24,23 @@ void MainWindow::setupFileMenu() {
     menuBar()->addMenu(fileMenu);
 
     fileMenu->addAction(tr("&Charger une recette"), this, SLOT(loadRecipe()), QKeySequence::New);
-    fileMenu->addAction(tr("&Quitter"), this, SLOT(closeSlot()), QKeySequence::Quit);
+    fileMenu->addAction(tr("&Quitter"), this, SLOT(closeSlot()), QKeySequence::Close);
 }
 
 
 void MainWindow::loadRecipe() {
-    QString fileName = QFileDialog::getOpenFileName(this, tr("Charger une recette"), "", tr("Fichier JSON (*.json)"));
+    QFileDialog dialog(this);
+    dialog.setFileMode(QFileDialog::AnyFile);
+    dialog.setNameFilter(tr("Fichier JSON (*.json)"));
+    dialog.setViewMode(QFileDialog::Detail);
+
+    QStringList fileNames;
+    if (dialog.exec()){
+        fileNames = dialog.selectedFiles();
+        QFile f (fileNames[0]);
+        rloader->LoadFromFile(&f);
+        emit recipeLoaded(rloader->GetRecipe());
+    }
 }
 
 void MainWindow::closeSlot() {
