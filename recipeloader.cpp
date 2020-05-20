@@ -21,13 +21,13 @@ void RecipeLoader::LoadFromFile(QFile file){
         QJsonDocument doc = QJsonDocument::fromJson(donnees, &error);
 
         if(error.error != QJsonParseError::NoError) {
-          //Erreur impoosible d'interpreter le fichier
+           throw std::runtime_error("Impossible d'interpreter le fichier, ce n'est peut être pas un fichier JSON.");
         }else{
             obj = doc.object();
         }
 
     }else{
-        //Erreur impossible d'ouvrir le fichier
+       throw std::runtime_error("Echec lors que l'ouverture du fichier");
     }
 
 }
@@ -44,7 +44,58 @@ void RecipeLoader::LoadRecipe() {
     recipe->setCategory(GetString("recipeCategory"));
     recipe->setKeywords(GetString("keywords"));
 
-    //TODO : CHARGER LE RESTE => YIELS TIMES TOOLS INGREDIENTS STEPS
+    recipe->setPrepTime(GetTime(GetString("prepTime")));
+    recipe->setCookTime(GetTime(GetString("cookTime")));
+    recipe->setTotalTime(GetTime(GetString("totalTime")));
+
+
+    recipe->setYield(GetInt("recipeYield"));
+
+
+    // Chargement des ingrédients
+    QJsonArray val = obj.value("recipeIngredient").toArray();
+    QString * ingredients = new QString[val.size()];
+    for(int i=0; i<val.size(); i++) {
+        ingredients[i] = val[i].toString();
+    }
+    recipe->setIngredients(ingredients);
+
+
+    //Chargement des instructions
+    val = obj.value("recipeInstructions").toArray();
+    QString * instructions = new QString[val.size()];
+    for(int i=0; i<val.size(); i++) {
+        instructions[i] = val[i].toString();
+    }
+    recipe->setIngredients(instructions);
+
+    //Chargement des outils
+    val = obj.value("tools").toArray();
+    QString * tools = new QString[val.size()];
+    for(int i=0; i<val.size(); i++) {
+        tools[i] = val[i].toString();
+    }
+    recipe->setTools(tools);
+
+}
+
+QString RecipeLoader::GetTime(QString t) {
+    if(t.startsWith("PT")){
+       QString s("");
+
+       QRegExp rex_numbers("(\\d+)");
+       int pos = 0;
+       pos = rex_numbers.indexIn(t, pos);
+       s += rex_numbers.cap(1) + "h";
+
+       pos += rex_numbers.matchedLength();
+       pos = rex_numbers.indexIn(t, pos);
+       s += rex_numbers.cap(1) + "m";
+       return s;
+    }else {
+        //Renvoie le texte initial si il n'est pas dans le bon format.
+        return t;
+    }
 }
 
 QString RecipeLoader::GetString(QString key){
@@ -52,5 +103,13 @@ QString RecipeLoader::GetString(QString key){
         return (obj.value(key)).toString();
     }else {
         return "";
+    }
+}
+
+int RecipeLoader::GetInt(QString key){
+    if(obj.contains(key)){
+        return (obj.value(key)).toInt();
+    }else {
+        return 0;
     }
 }

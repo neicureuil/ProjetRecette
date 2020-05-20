@@ -8,6 +8,7 @@
 #include <QDebug>
 #include <QJsonValue>
 #include <QJsonArray>
+#include <QRegExp>
 
 
 /**
@@ -45,6 +46,18 @@ class RecipeLoader
          * @return un QString qui renvoie la valeur si la clé existe et sinon un string vide.
          */
         QString GetString(QString);
+        /**
+         * Fonction recupere la valeur d'une clé JSON
+         * @param un QString qui correspond a la clé recherchée.
+         * @return un int qui renvoie la valeur si la clé existe et sinon 0.
+         */
+        int GetInt(QString);
+        /**
+         * Fonction convertit le format du temps PTHM en un format plus lisable.
+         * @param un QString qui correspond au temps au format PTHM.
+         * @return un QString qui correspond a temps convertie dans un format plus lisbale (heures/minutes=.
+         */
+        QString GetTime(QString);
         /**
          * Un getter qui retourne la recette chargée.
          * @return Un Recipe* contenant recette
