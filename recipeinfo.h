@@ -5,6 +5,7 @@
 #include <QTabWidget>
 #include <QHBoxLayout>
 #include "recipetab.h"
+#include "stepstab.h"
 
 class RecipeInfo : public QWidget
 {
@@ -13,6 +14,7 @@ class RecipeInfo : public QWidget
     private:
         QTabWidget* tabs;
         RecipeTab* recipetab;
+        StepsTab* stepstab;
 
     public:
         RecipeInfo(QWidget *parent = nullptr);

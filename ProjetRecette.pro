@@ -21,14 +21,16 @@ SOURCES += \
     recipe.cpp \
     recipeinfo.cpp \
     recipeloader.cpp \
-    recipetab.cpp
+    recipetab.cpp \
+    stepstab.cpp
 
 HEADERS += \
     mainwindow.h \
     recipe.h \
     recipeinfo.h \
     recipeloader.h \
-    recipetab.h
+    recipetab.h \
+    stepstab.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
