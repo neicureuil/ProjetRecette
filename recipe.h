@@ -27,9 +27,9 @@ class Recipe {
         /**
          * Constructeur de la class Recipe.
          * Initialise la class avec des valeurs vides sauf pour le nom qui est passé en paramètre.
-         * @param un QString qui contient le nouveau nom de la recette
+         * @param s un QString qui contient le nouveau nom de la recette
          */
-        Recipe(QString);
+        Recipe(QString s);
         /**
          * Le destructeur de la class Recipe.
          * Appelé lors de la destruction d'une recette, détruit les tableau (ingredients, tools, instructions).
@@ -38,67 +38,67 @@ class Recipe {
 
         /**
          * Un setter qui permet de modifier le nom de la recette.
-         * @param un QString qui contient le nouveau nom de la recette.
+         * @param n un QString qui contient le nouveau nom de la recette.
          */
         inline void setName(QString n) { name = n; };
         /**
          * Un setter qui permet de modifier la description de la recette.
-         * @param un QString qui contient la nouvelle description de la recette.
+         * @param n un QString qui contient la nouvelle description de la recette.
          */
         inline void setDesc(QString n) { desc = n; };
         /**
          * Un setter qui permet de modifier l'url de la recette.
-         * @param un QString qui contient la nouvelle url de la recette.
+         * @param n un QString qui contient la nouvelle url de la recette.
          */
         inline void setUrl(QString n) { url = n; };
         /**
          * Un setter qui permet de modifier l'url de l'image de la recette.
-         * @param un QString qui contient la nouvelle url de l'image de la recette.
+         * @param n un QString qui contient la nouvelle url de l'image de la recette.
          */
         inline void setImage(QString n) { image = n; };
         /**
          * Un setter qui permet de modifier la catégorie de la recette.
-         * @param un QString qui contient la nouvelle catégorie de la recette.
+         * @param n un QString qui contient la nouvelle catégorie de la recette.
          */
         inline void setCategory(QString n) { category = n; };
         /**
          * Un setter qui permet de modifier les mots clés de la recette.
-         * @param un QString qui contient la nouvelle liste des mots clés de la recette.
+         * @param n un QString qui contient la nouvelle liste des mots clés de la recette.
          */
         inline void setKeywords(QString n) { keywords = n; };
         /**
          * Un setter qui permet de modifier le temps de préparation de la recette.
-         * @param un QString qui contient le nouveau temps de préparation de la recette.
+         * @param n un QString qui contient le nouveau temps de préparation de la recette.
          */
         inline void setPrepTime(QString n) { prepTime = n; };
         /**
          * Un setter qui permet de modifier le temps de cuisson de la recette.
-         * @param un QString qui contient le nouveau temps de cuisson de la recette.
+         * @param n un QString qui contient le nouveau temps de cuisson de la recette.
          */
         inline void setCookTime(QString n) { cookTime = n; };
         /**
          * Un setter qui permet de modifier le temps total de préparation de la recette.
-         * @param un QString qui contient le nouveau temps total de préparation de la recette.
+         * @param n un QString qui contient le nouveau temps total de préparation de la recette.
          */
         inline void setTotalTime(QString n) { totalTime = n; };
         /**
          * Un setter qui permet de modifier la quantité produite de la recette.
-         * @param un Int qui contient la nouvelle quantité produite de la recette.
+         * @param i un Int qui contient la nouvelle quantité produite de la recette.
          */
         inline void setYield(int i) { yield = i; };
         /**
          * Un setter qui permet de modifier les ingrédients de la recette après avoir supprimer le tableau d'ingrédient existant.
-         * @param un QString* , tableau de Qtring qui contient les nouveaux ingrédients de la recette.
+         * @param n un QString* , tableau de Qtring qui contient les nouveaux ingrédients de la recette.
          */
         inline void setIngredients(QString * n) { delete [] ingredients; ingredients = n; };
         /**
          * Un setter qui permet de modifier les instructions de la recette après avoir supprimer le tableau d'instructions existant.
-         * @param un QString* , tableau de Qtring qui contient les nouvelles instructions de la recette.
+         * @param n un QString* , tableau de Qtring qui contient les nouvelles instructions de la recette.
          */
         inline void setInstructions(QString * n) { delete [] instructions; instructions = n; };
         /**
          * Un setter qui permet de modifier les ustensiles de la recette après avoir supprimer le tableau d'ustensiles existant.
-         * @param un QString* , tableau de Qtring qui contient les nouvelles liste d'ustensiles de la recette.
+         * @param n un QString* , tableau de Qtring qui contient les nouvelles liste d'ustensiles de la recette.
          */
         inline void setTools(QString * n) { delete [] tools; tools = n; };
 
