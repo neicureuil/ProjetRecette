@@ -5,7 +5,7 @@ MainWindow::MainWindow(QWidget *parent)
    setupFileMenu();
 
 
-   loadRecipe();
+   //loadRecipe();
    setCentralWidget(new RecipeInfo(this));
 }
 
@@ -18,9 +18,14 @@ void MainWindow::setupFileMenu() {
     menuBar()->addMenu(fileMenu);
 
     fileMenu->addAction(tr("&Charger une recette"), this, SLOT(loadRecipe()), QKeySequence::New);
+    fileMenu->addAction(tr("&Quitter"), this, SLOT(closeSlot()), QKeySequence::Quit);
 }
 
 
 void MainWindow::loadRecipe() {
+    QString fileName = QFileDialog::getOpenFileName(this, tr("Charger une recette"), "", tr("Fichier JSON (*.json)"));
+}
 
+void MainWindow::closeSlot() {
+    emit closeApp();
 }

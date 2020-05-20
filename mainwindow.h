@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QMenu>
 #include <QMenuBar>
+#include <QFileDialog>
 
 #include "recipeinfo.h"
 
@@ -34,8 +35,17 @@ class MainWindow : public QMainWindow
 
     public slots:
         /**
-         * Fonction qui charge une recette depuis le RecipeLoader.
+         * Slot qui charge une recette depuis le RecipeLoader.
          */
         void loadRecipe();
+        /**
+         * Slot qui emet le signal closeApp(). A appler lorsque l'on souhaite quitter l'application.
+         */
+        void closeSlot();
+    signals:
+        /**
+         * Signal emis lorsque l'utilisareur demande a fermer l'application.
+         */
+        void closeApp();
 };
 #endif // MAINWINDOW_H
