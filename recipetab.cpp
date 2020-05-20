@@ -31,7 +31,9 @@ RecipeTab::RecipeTab(QWidget *parent) : QWidget(parent)
     thirdLayout->addWidget(yieldlabel);
 
     secondLayout->addLayout(thirdLayout);
-   // rimage = new QImage();
+
+    imagelabel = new QLabel("");
+    secondLayout->addWidget(imagelabel);
 
     desclabel= new QLabel("Description de la recette:");
     secondLayout->addWidget(desclabel);
@@ -60,7 +62,42 @@ RecipeTab::RecipeTab(QWidget *parent) : QWidget(parent)
 
 
     setLayout(secondLayout);
+}
+
+void RecipeTab::LoadImage(QString urls) {
+    if(urls != "") {
+        QNetworkAccessManager *nam = new QNetworkAccessManager(this);
+        connect(nam, SIGNAL(finished(QNetworkReply*)), this, SLOT(updateImage(QNetworkReply*)));
+
+        const QUrl url = QUrl(urls);
+        QNetworkRequest request(url);
+        nam->get(request);
+    }else {
+        imagelabel->setHidden(true);
+    }
+}
+
+void RecipeTab::updateImage(QNetworkReply *reply) {
+    QPixmap pm;
+    pm.loadFromData(reply->readAll());
+    imagelabel->setHidden(false);
+    imagelabel->setPixmap(pm);
+}
+
+void RecipeTab::updateUI(Recipe* r) {
+    if(r != nullptr) {
+
+        LoadImage(r->getImage());
+
+        namelabel->setText(r->getName());
+        desctxtlabel->setText(r->getDesc());
+        categorylabel->setText("Catégorie: " + r->getCategory());
+
+        urllabel->setText("<a href='"+ r->getUrl() +"' >Lien de la recette</a>");
+        urllabel->setHidden(r->getUrl() == "" ? true : false);
+
+        //LES TEMPS LES OUTIS ET LES MOTS CLEFS
 
 
-
+    }
 }
