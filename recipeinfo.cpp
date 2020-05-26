@@ -2,10 +2,11 @@
 
 RecipeInfo::RecipeInfo(QWidget *parent) : QWidget(parent)
 {
+    stepdialog = new StepsDialog(this);
+
     QVBoxLayout * mainLayout = new QVBoxLayout();
 
     recipetab = new RecipeTab();
-    //steptab = new StepsTab();
     ingtab = new IngredientTab();
 
     QScrollArea * recipeTabScroll = new QScrollArea(this);
@@ -16,7 +17,6 @@ RecipeInfo::RecipeInfo(QWidget *parent) : QWidget(parent)
     tabs = new QTabWidget();
     tabs->addTab(recipeTabScroll,"Informations");
     tabs->addTab(ingtab,"Ingrédients");
-    //tabs->addTab(steptab, "Etapes");
 
 
     startBtn = new QPushButton("Cuisiner");
@@ -33,7 +33,7 @@ RecipeInfo::RecipeInfo(QWidget *parent) : QWidget(parent)
 }
 
 void RecipeInfo::StartCooking() {
-
+    stepdialog->show();
 }
 
 void RecipeInfo::LoadRecipe(Recipe * r) {

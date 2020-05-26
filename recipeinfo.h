@@ -7,20 +7,20 @@
 #include <QPushButton>
 #include <QScrollArea>
 
+#include "stepsdialog.h"
 #include "ingredienttab.h"
 #include "recipetab.h"
-#include "stepstab.h"
 
 class RecipeInfo : public QWidget
 {
     Q_OBJECT
 
     private:
+        StepsDialog* stepdialog;
         QPushButton* startBtn;
         QTabWidget* tabs;
         RecipeTab* recipetab;
         IngredientTab* ingtab;
-        StepsTab* steptab;
 
     public:
         RecipeInfo(QWidget *parent = nullptr);

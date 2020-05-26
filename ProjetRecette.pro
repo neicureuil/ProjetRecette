@@ -24,7 +24,7 @@ SOURCES += \
     recipeinfo.cpp \
     recipeloader.cpp \
     recipetab.cpp \
-    stepstab.cpp
+    stepsdialog.cpp
 
 HEADERS += \
     ingredientlistmodel.h \
@@ -34,7 +34,7 @@ HEADERS += \
     recipeinfo.h \
     recipeloader.h \
     recipetab.h \
-    stepstab.h
+    stepsdialog.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

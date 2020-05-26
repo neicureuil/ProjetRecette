@@ -115,7 +115,6 @@ void RecipeTab::LoadImage(QString urls) {
 void RecipeTab::updateImage(QNetworkReply *reply) {
     pixmap.loadFromData(reply->readAll());
     imagelabel->setHidden(false);
-    imagelabel->setPixmap(pixmap);
     imagelabel->setPixmap(pixmap.scaled(350,350,Qt::KeepAspectRatio));
 }
 
