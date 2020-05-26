@@ -18,19 +18,25 @@ class StepsDialog : public QDialog
     Q_OBJECT
 
     private:
-        QStateMachine * machine;
+        QStateMachine machine;
         QComboBox * choicebox;
         QLabel * steplabel;
         QPushButton * previousbtn;
         QPushButton * nextbtn;
-        QVector<QState*> states;
+        QStringList steps;
+        int current;
 
     public:
         explicit StepsDialog(QWidget *parent = nullptr);
 
     signals:
+        void endChangeInstruction();
+
+
     public slots:
         void ComboChanged(int i);
+        void instructionSuivante();
+        void instructionPrecedente();
         void Init(const QStringList& liste);
 };
 

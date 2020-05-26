@@ -3,9 +3,8 @@
 
 StepsDialog::StepsDialog(QWidget *parent) : QDialog(parent)
 {
-
     setModal(false);
-    machine = new QStateMachine(this);
+    //machine = new QStateMachine(this);
 
     QVBoxLayout * mainLayout = new QVBoxLayout();
     QHBoxLayout * btnLayout = new QHBoxLayout();
@@ -40,39 +39,66 @@ StepsDialog::StepsDialog(QWidget *parent) : QDialog(parent)
 }
 
 void StepsDialog::ComboChanged(int i) {
-    machine->stop();
-    machine->setRunning(false);
-    machine->setInitialState(states[i]);
-    machine->start();
+   current = i;
+   steplabel->setText(steps[current]);
+}
+
+void StepsDialog::instructionSuivante() {
+   if(current < steps.length()-1){
+       current++;
+       steplabel->setText(steps[current]);
+   }
+   emit endChangeInstruction();
+}
+
+void StepsDialog::instructionPrecedente() {
+    if(current > 0){
+        current--;
+        steplabel->setText(steps[current]);
+    }
+    emit endChangeInstruction();
 }
 
 void StepsDialog::Init(const QStringList& liste){
     //delete machine;
+    steps = liste;
+    current = -1;
 
-
-    QState *etatDebut = new QState();
-    etatDebut->assignProperty(steplabel, "text", QString(tr("Appuyez sur Suivant pour commencer")));
-    machine->addState(etatDebut);
-
-    QState *etattmp = etatDebut;
-    for(int i=0; i<liste.length(); i++) {
-        QState *etat = new QState();
-        etat->assignProperty(steplabel, "text", QString(liste[i]));
-        etat->addTransition(previousbtn, SIGNAL(clicked()), etattmp);
-        etattmp->addTransition(nextbtn, SIGNAL(clicked()), etat);
-        etattmp=etat;
-        machine->addState(etat);
-        states.append(etat);
+    for(int i=1; i<=liste.length(); i++) {
         choicebox->addItem(tr("Etape ") + QString::number(i).toStdString().c_str());
     }
 
-    QState *etatFin = new QState();
-    etatFin->assignProperty(steplabel, "text", QString(tr("Fin, appuyez sur précédent pour revenir en arrière")));
-    etattmp->addTransition(nextbtn, SIGNAL(clicked()), etatFin);
-    etatFin->addTransition(previousbtn, SIGNAL(clicked()), etattmp);
-    machine->addState(etatFin);
 
-    machine->setInitialState(etatDebut);
-    machine->start();
+    QState *etatDebut = new QState();
+    QState *enCours = new QState();
+    QState *etatFin = new QState();
+
+    QState *enCoursSuivant = new QState();
+    QState *enCoursPrecedent = new QState();
+
+    etatDebut->addTransition(nextbtn, SIGNAL(clicked()), enCours);
+
+    enCours->addTransition(nextbtn, SIGNAL(clicked()), enCoursSuivant);
+    enCours->addTransition(previousbtn, SIGNAL(clicked()), enCoursPrecedent);
+
+    enCoursSuivant->addTransition(this, SIGNAL(endChangeInstruction()), enCours);
+    enCoursPrecedent->addTransition(this, SIGNAL(endChangeInstruction()), enCours);
+
+    connect(enCoursSuivant,SIGNAL(entered()), this, SLOT(instructionSuivante()));
+    connect(enCoursPrecedent,SIGNAL(entered()), this, SLOT(instructionPrecedente()));
+
+    etatFin->addTransition(previousbtn, SIGNAL(clicked()), enCours);
+
+
+
+    machine.addState(enCoursSuivant);
+    machine.addState(enCoursPrecedent);
+
+    machine.addState(etatDebut);
+    machine.addState(enCours);
+    machine.addState(etatFin);
+
+    machine.setInitialState(etatDebut);
+    machine.start();
 
 }
