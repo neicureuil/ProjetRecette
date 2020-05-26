@@ -2,6 +2,7 @@
 #define RECIPE_H
 
 #include <QString>
+#include <QStringList>
 
 /**
  *  La class Recipe. Contient toute les informations relatives a une recettes (pas de traitement dans cette classe, que du stockage d'informations).
@@ -19,8 +20,7 @@ class Recipe {
         QString cookTime; /**< QString variable. Contient le temps de cuisson de la recette. */
         QString totalTime; /**< QString variable. Contient le temps total de préparation de la recette. */
         int yield; /**< Int variable. Contient la quantité produite de la recette (ex: nb de personnes/services). */
-        QString * ingredients;  /**< QString* variable. Tableau de QString qui contient la liste des ingrédients de la recette. */
-        QString * tools;  /**< QString* variable. Tableau de QString qui contient les ustensiles nécessaires a la recette. */
+        QStringList ingredients;  /**< QStringList variable. Liste de QString qui contient la liste des ingrédients de la recette. */
         QString * instructions;  /**< QString* variable. Tableau de QString qui contient les instructions de la recette. */
 
     public:
@@ -88,19 +88,14 @@ class Recipe {
         inline void setYield(int i) { yield = i; };
         /**
          * Un setter qui permet de modifier les ingrédients de la recette après avoir supprimer le tableau d'ingrédient existant.
-         * @param n un QString* , tableau de Qtring qui contient les nouveaux ingrédients de la recette.
+         * @param list une QStringList , Liste de Qtring qui contient les nouveaux ingrédients de la recette.
          */
-        inline void setIngredients(QString * n) { delete [] ingredients; ingredients = n; };
+        inline void setIngredients(QStringList list) { ingredients = list; };
         /**
          * Un setter qui permet de modifier les instructions de la recette après avoir supprimer le tableau d'instructions existant.
          * @param n un QString* , tableau de Qtring qui contient les nouvelles instructions de la recette.
          */
         inline void setInstructions(QString * n) { delete [] instructions; instructions = n; };
-        /**
-         * Un setter qui permet de modifier les ustensiles de la recette après avoir supprimer le tableau d'ustensiles existant.
-         * @param n un QString* , tableau de Qtring qui contient les nouvelles liste d'ustensiles de la recette.
-         */
-        inline void setTools(QString * n) { delete [] tools; tools = n; };
 
 
         /**
@@ -155,19 +150,14 @@ class Recipe {
         inline int getYield() { return yield; };
         /**
          * Un getter qui retourne le tableau d'ingredients de la recette.
-         * @return Un QString* contenant le tableau d'ingredients de la recette
+         * @return Une QStringList& constante contenant une référence sur la liste l'ingredients.
          */
-        inline QString* getIngredients() { return ingredients; };
+        inline const QStringList& getIngredients() { return ingredients; };
         /**
          * Un getter qui retourne le tableau d'instructions de la recette.
          * @return Un QString* contenant le tableau d'instructions de la recette
          */
         inline QString* getInstructions() { return instructions; };
-        /**
-         * Un getter qui retourne le tableau d'ustensiles de la recette.
-         * @return Un QString* contenant le tableau d'ustensiles de la recette
-         */
-        inline QString* getTools() { return tools; };
 
 };
 

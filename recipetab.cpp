@@ -2,66 +2,101 @@
 
 RecipeTab::RecipeTab(QWidget *parent) : QWidget(parent)
 {
-    QVBoxLayout * secondLayout = new QVBoxLayout();
+    QVBoxLayout * mainLayout = new QVBoxLayout();
+    mainLayout->setAlignment(Qt::AlignTop);
+
+    //Categorie
 
     categorylabel= new QLabel("Catégorie: Ipsum");
-    secondLayout->addWidget(categorylabel);
-    secondLayout->setAlignment(Qt::AlignTop);
-    secondLayout->setAlignment(categorylabel, Qt::AlignRight);
+    mainLayout->addWidget(categorylabel);
+    mainLayout->setAlignment(categorylabel, Qt::AlignRight);
+
+    mainLayout->addSpacing(10);
+
+    // Nom recette
 
     namelabel= new QLabel("Nom de la recette");
-    secondLayout->addWidget(namelabel);
-    secondLayout->setAlignment(Qt::AlignTop);
-    secondLayout->setAlignment(namelabel, Qt::AlignCenter);
+    mainLayout->addWidget(namelabel);
+    mainLayout->setAlignment(namelabel, Qt::AlignCenter);
     namelabel->setStyleSheet("border-bottom-width: 1px; border-bottom-style: solid; border-radius: 0px; font-weight: bold;");
 
-    QHBoxLayout * thirdLayout = new QHBoxLayout();
-    thirdLayout->setAlignment(Qt::AlignLeft);
+    mainLayout->addSpacing(10);
 
-    preptimelabel= new QLabel("Temps de préparation:");
-    thirdLayout->addWidget(preptimelabel);
-
-    cooktimelabel= new QLabel("Temps de cuisson:");
-    thirdLayout->addWidget(cooktimelabel);
-
-    totaltimelabel= new QLabel("Temps total:");
-    thirdLayout->addWidget(totaltimelabel);
-
-    yieldlabel= new QLabel("Nombre de parts:");
-    thirdLayout->addWidget(yieldlabel);
-
-    secondLayout->addLayout(thirdLayout);
+    // Image
 
     imagelabel = new QLabel("");
-    secondLayout->addWidget(imagelabel);
+    mainLayout->addWidget(imagelabel);
+    mainLayout->setAlignment(imagelabel, Qt::AlignCenter);
 
-    desclabel= new QLabel("Description de la recette:");
-    secondLayout->addWidget(desclabel);
-    secondLayout->setAlignment(desclabel, Qt::AlignLeft);
-    desclabel->setStyleSheet("border-bottom-width: 1px; border-bottom-style: solid; border-radius: 0px;");
+    mainLayout->addSpacing(20);
 
-    desctxtlabel= new QLabel("Lorem Ipsum Ta kompri avec du lait et des cookies pour mon plaisir personnel");
-    secondLayout->addWidget(desctxtlabel);
-    secondLayout->setAlignment(desctxtlabel, Qt::AlignAbsolute);
+    // Description
 
-    toolslabel= new QLabel("Outils nécéssaires:");
-    secondLayout->addWidget(toolslabel);
-    secondLayout->setAlignment(toolslabel, Qt::AlignLeft);
+    QLabel * descTitleLabel= new QLabel("Description de la recette:");
+    mainLayout->addWidget(descTitleLabel);
+    mainLayout->setAlignment(descTitleLabel, Qt::AlignLeft);
+    descTitleLabel->setStyleSheet("border-bottom-width: 1px; border-bottom-style: solid; border-radius: 0px;");
 
-    kwordslabel= new QLabel("Mots clés:");
-    secondLayout->addWidget(kwordslabel);
-    secondLayout->setAlignment(kwordslabel, Qt::AlignLeft);
+    desclabel= new QLabel("Lorem Ipsum Ta kompri avec du lait et des cookies pour mon plaisir personnel");
+    desclabel->setWordWrap(true);
+    mainLayout->addWidget(desclabel);
 
-    urllabel= new QLabel("Lien de la recette");
-    secondLayout->addWidget(urllabel);
-    secondLayout->setAlignment(urllabel, Qt::AlignLeft);
+    mainLayout->addSpacing(10);
+
+    // TIMES AND YIELDS
+
+    QLabel * prepTimeTitleLabel = new QLabel("Temps de préparation:");
+    preptimelabel= new QLabel("0mins");
+    CreateHField(mainLayout, prepTimeTitleLabel, preptimelabel);
+
+    QLabel * cookTimeTitleLabel = new QLabel("Temps de cuisson:");
+    cooktimelabel= new QLabel("0mins");
+    CreateHField(mainLayout, cookTimeTitleLabel, cooktimelabel);
+
+    QLabel * totalTimeTitleLabel = new QLabel("Temps total:");
+    totaltimelabel= new QLabel("0mins");
+    CreateHField(mainLayout, totalTimeTitleLabel, totaltimelabel);
+
+    mainLayout->addSpacing(10);
+
+    QLabel * yieldTitleLabel = new QLabel("Nombre de parts:");
+    yieldlabel= new QLabel("0");
+    CreateHField(mainLayout, yieldTitleLabel, yieldlabel);
+
+    mainLayout->addSpacing(10);
+
+    // KEYWORDS
+
+    QLabel * kwordsTitleLabel = new QLabel("Mots clés:");
+    kwordslabel= new QLabel("recette");
+    kwordslabel->setWordWrap(true);
+
+    mainLayout->addWidget(kwordsTitleLabel);
+    mainLayout->setAlignment(kwordsTitleLabel, Qt::AlignLeft);
+    kwordsTitleLabel->setStyleSheet("border-bottom-width: 1px; border-bottom-style: solid; border-radius: 0px;");
+    mainLayout->addWidget(kwordslabel);
+
+    //URL
+
+    urllabel= new QLabel();
     urllabel->setTextFormat(Qt::RichText);
     urllabel->setText("<a href='https://www.google.fr' >Lien de la recette</a>");
     urllabel->setTextInteractionFlags(Qt::TextBrowserInteraction);
     urllabel->setOpenExternalLinks(true);
+    mainLayout->addWidget(urllabel);
+    mainLayout->setAlignment(urllabel, Qt::AlignLeft);
 
 
-    setLayout(secondLayout);
+    setLayout(mainLayout);
+}
+
+
+void RecipeTab::CreateHField(QBoxLayout *container, QWidget *w1, QWidget *w2) {
+    QHBoxLayout *layout = new QHBoxLayout();
+    layout->setAlignment(Qt::AlignLeft);
+    layout->addWidget(w1);
+    layout->addWidget(w2);
+    container->addLayout(layout);
 }
 
 void RecipeTab::LoadImage(QString urls) {
@@ -78,10 +113,10 @@ void RecipeTab::LoadImage(QString urls) {
 }
 
 void RecipeTab::updateImage(QNetworkReply *reply) {
-    QPixmap pm;
-    pm.loadFromData(reply->readAll());
+    pixmap.loadFromData(reply->readAll());
     imagelabel->setHidden(false);
-    imagelabel->setPixmap(pm);
+    imagelabel->setPixmap(pixmap);
+    imagelabel->setPixmap(pixmap.scaled(350,350,Qt::KeepAspectRatio));
 }
 
 void RecipeTab::updateUI(Recipe* r) {
@@ -90,14 +125,18 @@ void RecipeTab::updateUI(Recipe* r) {
         LoadImage(r->getImage());
 
         namelabel->setText(r->getName());
-        desctxtlabel->setText(r->getDesc());
+        desclabel->setText(r->getDesc());
         categorylabel->setText("Catégorie: " + r->getCategory());
 
         urllabel->setText("<a href='"+ r->getUrl() +"' >Lien de la recette</a>");
         urllabel->setHidden(r->getUrl() == "" ? true : false);
 
-        //LES TEMPS LES OUTIS ET LES MOTS CLEFS
+        preptimelabel->setText(r->getPrepTime());
+        cooktimelabel->setText(r->getCookTime());
+        totaltimelabel->setText(r->getTotalTime());
 
+        yieldlabel->setText(QString::number(r->getYield()));
 
+        kwordslabel->setText(r->getKeywords());
     }
 }

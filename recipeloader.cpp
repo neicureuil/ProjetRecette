@@ -9,7 +9,6 @@ RecipeLoader::~RecipeLoader() {
 }
 
 void RecipeLoader::LoadFromFile(QFile* file){
-
     QJsonParseError error;
 
     //Ouverture du fichier en lecture uniquement
@@ -55,9 +54,9 @@ void RecipeLoader::LoadRecipe() {
 
     // Chargement des ingrédients
     QJsonArray val = obj.value("recipeIngredient").toArray();
-    QString * ingredients = new QString[val.size()];
+    QStringList ingredients;
     for(int i=0; i<val.size(); i++) {
-        ingredients[i] = val[i].toString();
+        ingredients.push_back(val[i].toString());
     }
     recipe->setIngredients(ingredients);
 
@@ -68,16 +67,7 @@ void RecipeLoader::LoadRecipe() {
     for(int i=0; i<val.size(); i++) {
         instructions[i] = val[i].toString();
     }
-    recipe->setIngredients(instructions);
-
-    //Chargement des outils
-    val = obj.value("tools").toArray();
-    QString * tools = new QString[val.size()];
-    for(int i=0; i<val.size(); i++) {
-        tools[i] = val[i].toString();
-    }
-    recipe->setTools(tools);
-
+    recipe->setInstructions(instructions);
 }
 
 QString RecipeLoader::GetTime(QString t) {

@@ -16,19 +16,20 @@ class RecipeTab : public QWidget
 public:
     explicit RecipeTab(QWidget *parent = nullptr);
     void LoadImage(QString);
+    void CreateHField(QBoxLayout* container, QWidget* w1, QWidget* w2);
 
 private:
+    QPixmap pixmap;
+
     QLabel * categorylabel;
     QLabel * namelabel;
     QLabel * desclabel;
-    QLabel * desctxtlabel;
     QLabel * urllabel;
     QLabel * kwordslabel;
     QLabel * preptimelabel;
     QLabel * cooktimelabel;
     QLabel * totaltimelabel;
     QLabel * yieldlabel;
-    QLabel * toolslabel;
     QLabel * imagelabel;
 
 public slots:

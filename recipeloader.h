@@ -9,6 +9,7 @@
 #include <QJsonValue>
 #include <QJsonArray>
 #include <QRegExp>
+#include <stdexcept>
 
 
 /**

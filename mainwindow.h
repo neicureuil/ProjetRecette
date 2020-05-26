@@ -5,6 +5,8 @@
 #include <QMenu>
 #include <QMenuBar>
 #include <QFileDialog>
+#include <QMessageBox>
+#include <QPixmap>
 
 #include "recipeinfo.h"
 #include "recipeloader.h"
@@ -23,6 +25,8 @@ class MainWindow : public QMainWindow
          * Fonction qui initialise le menu "fichier" dans la barre de menus.
          */
         void setupFileMenu();
+        void setupLangMenu();
+        void setupHelpMenu();
 
     public:
         /**

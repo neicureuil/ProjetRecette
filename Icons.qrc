@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/">
+        <file>images/icon_default.png</file>
+        <file>images/icon_sugar.png</file>
+        <file>images/icon_farine.png</file>
+        <file>images/flag_en.png</file>
+        <file>images/flag_fr.png</file>
+        <file>images/icon_huile.png</file>
+        <file>images/icon_water.png</file>
+    </qresource>
+</RCC>

@@ -2,25 +2,43 @@
 
 StepsTab::StepsTab(QWidget *parent) : QWidget(parent)
 {
-    QVBoxLayout * secondLayout = new QVBoxLayout();
-    QHBoxLayout * thirdLayout = new QHBoxLayout();
+    QVBoxLayout * mainLayout = new QVBoxLayout();
+    QHBoxLayout * btnLayout = new QHBoxLayout();
+
+    mainLayout->setAlignment(Qt::AlignTop);
+    mainLayout->addSpacing(10);
 
     choicebox = new QComboBox();
-    secondLayout->addWidget(choicebox);
-    secondLayout->setAlignment(Qt::AlignTop);
-    secondLayout->setAlignment(choicebox, Qt::AlignLeft);
+    mainLayout->addWidget(choicebox);
+    mainLayout->setAlignment(choicebox, Qt::AlignLeft);
+
+    mainLayout->addSpacing(50);
 
     steplabel = new QLabel("Sortez couverts");
-    secondLayout->addWidget(steplabel);
-    secondLayout->setAlignment(steplabel, Qt::AlignCenter);
-    secondLayout->setAlignment(thirdLayout, Qt::AlignBottom);
+    mainLayout->addWidget(steplabel);
+    mainLayout->setAlignment(steplabel, Qt::AlignCenter);
+
+    mainLayout->addSpacing(50);
 
     previousbtn = new QPushButton("Précédent");
-    thirdLayout->addWidget(previousbtn);
-
     nextbtn = new QPushButton("Suivant");
-    thirdLayout->addWidget(nextbtn);
 
-    setLayout(secondLayout);
-    secondLayout->addLayout(thirdLayout);
+    btnLayout->addWidget(previousbtn);
+    btnLayout->addWidget(nextbtn);
+
+    mainLayout->addLayout(btnLayout);
+
+    setLayout(mainLayout);
+
+    /*
+    machine = new QStateMachine(this);
+
+    QState * state = new QState();
+
+    state->addTransition(nextbtn, SIGNAL(clicked)), this, SLOT(next));
+
+    machine->addState(state);
+    machine->start();
+    */
+
 }

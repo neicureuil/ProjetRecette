@@ -6,6 +6,7 @@
 #include <QHBoxLayout>
 #include <QComboBox>
 #include <QPushButton>
+#include <QStateMachine>
 
 class StepsTab : public QWidget
 {
@@ -14,6 +15,7 @@ public:
     StepsTab(QWidget *parent = nullptr);
 
 private:
+    QStateMachine * machine;
     QComboBox * choicebox;
     QLabel * steplabel;
     QPushButton * previousbtn;
