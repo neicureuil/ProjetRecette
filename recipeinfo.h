@@ -31,11 +31,13 @@ class RecipeInfo : public QWidget
         void StartCooking();
         void LoadRecipe(Recipe* r);
 
+
     signals:
         //TODO doc
         void recipeLoaded(Recipe *);
         //TODO doc
         void ingredientsLoaded(const QStringList& list);
+        void stepLoaded(const QStringList& list);
 
 };
 

@@ -63,9 +63,9 @@ void RecipeLoader::LoadRecipe() {
 
     //Chargement des instructions
     val = obj.value("recipeInstructions").toArray();
-    QString * instructions = new QString[val.size()];
+    QStringList instructions;
     for(int i=0; i<val.size(); i++) {
-        instructions[i] = val[i].toString();
+        instructions.push_back(val[i].toString());
     }
     recipe->setInstructions(instructions);
 }

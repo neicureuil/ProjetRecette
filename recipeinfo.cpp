@@ -30,7 +30,10 @@ RecipeInfo::RecipeInfo(QWidget *parent) : QWidget(parent)
 
     connect(this, SIGNAL(recipeLoaded(Recipe*)), recipetab, SLOT(updateUI(Recipe*)));
     connect(this, SIGNAL(ingredientsLoaded(const QStringList&)), ingtab, SLOT(SetIngredients(const QStringList&)));
+   connect(this, SIGNAL(stepLoaded(const QStringList&)), stepdialog, SLOT(Init(const QStringList&)));
 }
+
+
 
 void RecipeInfo::StartCooking() {
     stepdialog->show();
@@ -39,4 +42,5 @@ void RecipeInfo::StartCooking() {
 void RecipeInfo::LoadRecipe(Recipe * r) {
     emit recipeLoaded(r);
     emit ingredientsLoaded(r->getIngredients());
+    emit stepLoaded(r->getInstructions());
 }

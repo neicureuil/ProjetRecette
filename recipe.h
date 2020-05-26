@@ -21,7 +21,7 @@ class Recipe {
         QString totalTime; /**< QString variable. Contient le temps total de préparation de la recette. */
         int yield; /**< Int variable. Contient la quantité produite de la recette (ex: nb de personnes/services). */
         QStringList ingredients;  /**< QStringList variable. Liste de QString qui contient la liste des ingrédients de la recette. */
-        QString * instructions;  /**< QString* variable. Tableau de QString qui contient les instructions de la recette. */
+        QStringList instructions;  /**< QString* variable. Tableau de QString qui contient les instructions de la recette. */
 
     public:
         /**
@@ -95,7 +95,7 @@ class Recipe {
          * Un setter qui permet de modifier les instructions de la recette après avoir supprimer le tableau d'instructions existant.
          * @param n un QString* , tableau de Qtring qui contient les nouvelles instructions de la recette.
          */
-        inline void setInstructions(QString * n) { delete [] instructions; instructions = n; };
+        inline void setInstructions(QStringList list) { instructions=list; };
 
 
         /**
@@ -157,7 +157,7 @@ class Recipe {
          * Un getter qui retourne le tableau d'instructions de la recette.
          * @return Un QString* contenant le tableau d'instructions de la recette
          */
-        inline QString* getInstructions() { return instructions; };
+        inline const QStringList& getInstructions() { return instructions; };
 
 };
 
