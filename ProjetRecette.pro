@@ -1,4 +1,4 @@
-QT       += core gui network
+QT       += core gui network multimedia
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -16,6 +16,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    helpdialog.cpp \
     ingredientlistmodel.cpp \
     ingredienttab.cpp \
     main.cpp \
@@ -27,6 +28,7 @@ SOURCES += \
     stepsdialog.cpp
 
 HEADERS += \
+    helpdialog.h \
     ingredientlistmodel.h \
     ingredienttab.h \
     mainwindow.h \
@@ -43,5 +45,8 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 RC_ICONS = icon.ico
 
+TRANSLATIONS = ./langs/lang_fr.ts
+
 RESOURCES += \
-    Icons.qrc
+    Langs.qrc \
+    Resources.qrc

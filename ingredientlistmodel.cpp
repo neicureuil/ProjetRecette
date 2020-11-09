@@ -33,14 +33,25 @@ void IngredientListModel::setIngredients(const QStringList &list) {
 }
 
 QString IngredientListModel::getIcon(QString ing){
-    if(ing.contains("sucre")) {
+    if(stringContains(ing, "sucre")) {
         return ":/images/icon_sugar.png";
-    }else if(ing.contains("farine")) {
+    }else if(stringContains(ing, "sardine")) {
+        return ":/images/sardine.png";
+    }else if(stringContains(ing, "farine")) {
         return ":/images/icon_farine.png";
-    }else if(ing.contains("huile")) {
+    }else if(stringContains(ing, "huile")) {
         return ":/images/icon_huile.png";
-    }else if(ing.contains("eau")) {
+    }else if(stringContains(ing, "eau")) {
         return ":/images/icon_water.png";
+    }else if(stringContains(ing, "sel")) {
+        return ":/images/sel.png";
+    }else if(stringContains(ing, "oeuf") || ing.contains("œuf")) {
+        return ":/images/oeuf.png";
+    }else if(stringContains(ing, "chocolat")) {
+        return ":/images/chocolat.png";
     }
     return ":/images/icon_default.png";
+}
+bool IngredientListModel::stringContains(const QString &source, const QString &val) {
+    return source.toLower().contains(val.toLower());
 }
