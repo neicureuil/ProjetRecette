@@ -1,0 +1,17 @@
+{
+	"name":"Sardine à l'huile d'olive maison",
+	"description":"Vous adorez les sardines en boite ? Faites donc vous même vos sardines à l'huile avec des sardines fraîches et des condiments de votre choix. Sans stérilisation, ces sardines se conserveront jusqu’à 3 semaines au réfrigérateur.",
+	"url":"https://chefsimon.com/gourmets/epicetout/recettes/sardine-a-l-huile-d-olive-maison",
+	"image":"https://www.rustica.fr/images/010802g-l760-h550.jpg",
+	"prepTime":"PT0H15M",
+	"cookTime":"PT0H05M",
+	"totalTime":"PT0H20M",
+	"recipeCategory":"Poisson du Sud",
+	"keywords":"sardines, huile, patrick sebastien",
+	"recipeYield":5,
+	"recipeIngredient":["Une vingtaine de sardines", "1 carotte", "1 gousse d aille", "Encore plus de sardines", "40 cl d huile d olive", "1 citron bio", "4 clous de girofles", "Sel"],
+	"recipeInstructions": ["Émincer très finement la gousse d’ail.", "Verser l’huile d’olive dans une casserole. Ajouter l’ail, la carotte coupée en rondelles, les clous de girofle, le thym, le laurier et le romarin.", "Faire chauffer à feu très doux jusqu’à formation de petites bulles (de début d’ébullition) et retirer du feu.", "Poser les sardines côté peau sur le plan de travail et saler le côté chair. Réserver 15 min.", "Rincer les sardines à l’eau clair et les essuyer dans un papier absorbant.", "Placer les sardines ( jusqu’au ¾) dans les bocaux soigneusement stérilisés.Ajouter 2 rondelles de citron, recouvrir d’huile et de sa garniture et ajouter le poivre en grains.", "Fermer hermétiquement les bocaux."],
+	"@context":"http:\/\/schema.org",
+	"@type":"Recipe",
+	"tool":[]
+}
