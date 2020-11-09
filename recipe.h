@@ -10,18 +10,18 @@
 class Recipe {
 
     private :
-        QString name; /**< QString variable. Contient le nom de la recette. */
-        QString desc; /**< QString variable. Contient la description de la recette. */
-        QString url; /**< QString variable. Contient l'url de la recette. */
-        QString image; /**< QString variable. Contient l'url de l'image de la recette. */
-        QString category; /**< QString variable. Contient la catégorie de la recette. */
-        QString keywords; /**< QString variable. Contient les mots clés de la recette. */
-        QString prepTime; /**< QString variable. Contient le temps de préparation de la recette. */
-        QString cookTime; /**< QString variable. Contient le temps de cuisson de la recette. */
-        QString totalTime; /**< QString variable. Contient le temps total de préparation de la recette. */
-        int yield; /**< Int variable. Contient la quantité produite de la recette (ex: nb de personnes/services). */
-        QStringList ingredients;  /**< QStringList variable. Liste de QString qui contient la liste des ingrédients de la recette. */
-        QStringList instructions;  /**< QString* variable. Tableau de QString qui contient les instructions de la recette. */
+        QString name; /**< QString. Contient le nom de la recette. */
+        QString desc; /**< QString. Contient la description de la recette. */
+        QString url; /**< QString. Contient l'url de la recette. */
+        QString image; /**< QString. Contient l'url de l'image de la recette. */
+        QString category; /**< QString. Contient la catégorie de la recette. */
+        QString keywords; /**< QString. Contient les mots clés de la recette. */
+        QString prepTime; /**< QString. Contient le temps de préparation de la recette. */
+        QString cookTime; /**< QString. Contient le temps de cuisson de la recette. */
+        QString totalTime; /**< QString. Contient le temps total de préparation de la recette. */
+        int yield; /**< int. Contient la quantité produite de la recette (ex: nb de personnes/services). */
+        QStringList ingredients;  /**< QStringList. Liste de QString qui contient la liste des ingrédients de la recette. */
+        QStringList instructions;  /**< QStringList. Liste de QString qui contient les instructions de la recette. */
 
     public:
         /**
@@ -88,12 +88,12 @@ class Recipe {
         inline void setYield(int i) { yield = i; };
         /**
          * Un setter qui permet de modifier les ingrédients de la recette après avoir supprimer le tableau d'ingrédient existant.
-         * @param list une QStringList , Liste de Qtring qui contient les nouveaux ingrédients de la recette.
+         * @param list une QStringList , liste de Qtring qui contient les nouveaux ingrédients de la recette.
          */
         inline void setIngredients(QStringList list) { ingredients = list; };
         /**
          * Un setter qui permet de modifier les instructions de la recette après avoir supprimer le tableau d'instructions existant.
-         * @param n un QString* , tableau de Qtring qui contient les nouvelles instructions de la recette.
+         * @param liste une QStringList, liste de Qtring qui contient les nouvelles instructions de la recette.
          */
         inline void setInstructions(QStringList list) { instructions=list; };
 
@@ -150,12 +150,12 @@ class Recipe {
         inline int getYield() { return yield; };
         /**
          * Un getter qui retourne le tableau d'ingredients de la recette.
-         * @return Une QStringList& constante contenant une référence sur la liste l'ingredients.
+         * @return Une QStringList& constante contenant la liste l'ingredients de la recette.
          */
         inline const QStringList& getIngredients() { return ingredients; };
         /**
          * Un getter qui retourne le tableau d'instructions de la recette.
-         * @return Un QString* contenant le tableau d'instructions de la recette
+         * @return Une QStringList& constante contenant la liste d'instructions de la recette
          */
         inline const QStringList& getInstructions() { return instructions; };
 

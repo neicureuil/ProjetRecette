@@ -1,0 +1,20 @@
+<RCC>
+    <qresource prefix="/">
+        <file>images/icon_default.png</file>
+        <file>images/icon_sugar.png</file>
+        <file>images/icon_farine.png</file>
+        <file>images/flag_en.png</file>
+        <file>images/flag_fr.png</file>
+        <file>images/icon_huile.png</file>
+        <file>images/icon_water.png</file>
+        <file>images/end.gif</file>
+        <file>images/oeuf.png</file>
+        <file>images/sel.png</file>
+        <file>images/chocolat.png</file>
+        <file>images/dylan.jpg</file>
+        <file>images/jeremy.jpg</file>
+        <file>images/qt.png</file>
+        <file>sounds/sardine.mp3</file>
+        <file>images/sardine.png</file>
+    </qresource>
+</RCC>

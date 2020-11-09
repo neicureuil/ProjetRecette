@@ -19,8 +19,8 @@ class RecipeLoader
 {
 
     private:
-        Recipe* recipe; /**< Recipe* variable. Pointeur sur recipe contenant la recette chargée. */
-        QJsonObject obj;  /**< QJsonObject variable. Objet Json chargé. */
+        Recipe* recipe; /**< Recipe*. Pointeur sur recipe contenant la recette chargée. */
+        QJsonObject obj;  /**< QJsonObject. Objet Json chargé. */
 
     public:
         /**
